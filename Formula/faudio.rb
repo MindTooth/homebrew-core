@@ -1,16 +1,16 @@
 class Faudio < Formula
   desc "Accuracy-focused XAudio reimplementation for open platforms"
   homepage "https://fna-xna.github.io/"
-  url "https://github.com/FNA-XNA/FAudio/archive/21.05.tar.gz"
-  sha256 "05c971c1676a9a16690d96922161a74f792ae93ea1fc076edb9ac3690c2f11fc"
+  url "https://github.com/FNA-XNA/FAudio/archive/21.07.tar.gz"
+  sha256 "30738397354d27b32e03aea648d5f8ba7ff6a63e02282b8f1533a44af2ba06b3"
   license "Zlib"
   head "https://github.com/FNA-XNA/FAudio.git"
 
   bottle do
-    sha256 cellar: :any, arm64_big_sur: "9a40ca444a5f92b57bfa6b1ddcfda9db37ca3eb2e78faa4f744c9df5d40fb2b0"
-    sha256 cellar: :any, big_sur:       "e81a90cfb9f516873b94e3f2b9627749db8457912fe448893479da5314ebfc90"
-    sha256 cellar: :any, catalina:      "daee0632b1ff0c944ba76ac363d08679014739028f7d20f6bf21979a7401ff10"
-    sha256 cellar: :any, mojave:        "2ba7e51c05eb94d17bbb57aad8f82ec9b255ccadd1c07b0fad5c95040c82cad2"
+    sha256 cellar: :any, arm64_big_sur: "4540155029d1219f16b61357052bf0e696bdb150462a8c268207787ce66f98c6"
+    sha256 cellar: :any, big_sur:       "4b3f6d12a276ee16cf89028408427ef6534eac0d447d0d73de9ad257f59f5941"
+    sha256 cellar: :any, catalina:      "845d60e3e2aa2682bb61907c0828069193605df07789ee22cb50736603d46104"
+    sha256 cellar: :any, mojave:        "981c005fd70a5a381a1da4c68adc68f58e4579025396ca05d72e8b1d69c5a0ab"
   end
 
   depends_on "cmake" => :build

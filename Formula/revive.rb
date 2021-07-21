@@ -2,16 +2,16 @@ class Revive < Formula
   desc "Fast, configurable, extensible, flexible, and beautiful linter for Go"
   homepage "https://revive.run"
   url "https://github.com/mgechev/revive.git",
-      tag:      "v1.0.6",
-      revision: "f2d79cc85d80b21ad8228384d300477007c582a1"
+      tag:      "v1.0.9",
+      revision: "89f108c22aa9ccc72f190c8622578e52ee615361"
   license "MIT"
   head "https://github.com/mgechev/revive.git"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "5140eea58dffb9525b63a9d6483e3696662f3f44352fc0555862d23047226e79"
-    sha256 cellar: :any_skip_relocation, big_sur:       "936d94d5807f1b3ca1c110ff51347848875cdc83f077f0c14ac50363d526528c"
-    sha256 cellar: :any_skip_relocation, catalina:      "3c5a1640c8619108a6775da06575c571f1f935b510e2f762b66ec4e8a7100338"
-    sha256 cellar: :any_skip_relocation, mojave:        "f0f79abb069d51418d4ef23f0567ed9ee2c116f3d37d59d5e92eca1c62de94ae"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "1ddeb4ed2f5b67ed0d198b73818f07af3c3a1fd0923940cfaf9c8b6ba63635c6"
+    sha256 cellar: :any_skip_relocation, big_sur:       "3a8ae58af838fb60f08b508d21f8fdfff4404ca941dbfd91b32130b8edad3f25"
+    sha256 cellar: :any_skip_relocation, catalina:      "b8f15e2ef521f2ecd10e9f487280b79959f7f420f728355edc146ebc752aeb1b"
+    sha256 cellar: :any_skip_relocation, mojave:        "b7d404bf410778c306d6a0ab036da2a46e3b0723ee400af5350e9cd73750e57d"
   end
 
   depends_on "go" => :build
@@ -19,8 +19,8 @@ class Revive < Formula
   def install
     ldflags = %W[
       -X main.commit=#{Utils.git_head}
-      -X main.date=#{Time.now.utc.iso8601}
-      -X main.builtBy=Homebrew
+      -X main.date=#{time.iso8601}
+      -X main.builtBy=#{tap.user}
     ]
     ldflags << "-X main.version=#{version}" unless build.head?
     system "go", "build", *std_go_args(ldflags: ldflags.join(" "))

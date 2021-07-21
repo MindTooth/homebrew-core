@@ -1,9 +1,9 @@
 class GoAT115 < Formula
   desc "Go programming environment (1.15)"
   homepage "https://golang.org"
-  url "https://golang.org/dl/go1.15.11.src.tar.gz"
-  mirror "https://fossies.org/linux/misc/go1.15.11.src.tar.gz"
-  sha256 "f25b2441d4c76cf63cde94d59bab237cc33e8a2a139040d904c8630f46d061e5"
+  url "https://golang.org/dl/go1.15.14.src.tar.gz"
+  mirror "https://fossies.org/linux/misc/go1.15.14.src.tar.gz"
+  sha256 "60a4a5c48d63d0a13eca8849009b624629ff429c8bc5d1a6a8c3c4da9f34e70a"
   license "BSD-3-Clause"
 
   livecheck do
@@ -12,9 +12,10 @@ class GoAT115 < Formula
   end
 
   bottle do
-    sha256 big_sur:  "6c1f72b4b611ce1464c5886250a203219a8775dc07dea0a9d9d10e074aa993c3"
-    sha256 catalina: "88a418aaca1b28b5040d6d1d72310efbfecd0e98128edd509a00f2ca601fcbba"
-    sha256 mojave:   "65b6ecfeca9e1a95e216d06f0ccff7dc929eb528e64ec5a2266aff7d96837211"
+    sha256 big_sur:      "4b7fd6ddbe755f924fd0c5509ed9c638445b2cfc973f96ecf1537430710ead3e"
+    sha256 catalina:     "b916522c4dc3929e9370f3306476b100b0a42cac514b713eb507a47c7a843d4a"
+    sha256 mojave:       "f7d745f62de99ef286c5d0f554964a2242bd0be29ee954be09a0ef9419d6ac2a"
+    sha256 x86_64_linux: "c1ff74df94ea43dfb4e4d8a29889938a4179bcfd4315a3805536b0b10bd4399c"
   end
 
   keg_only :versioned_formula

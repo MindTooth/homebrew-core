@@ -1,8 +1,8 @@
 class Knot < Formula
   desc "High-performance authoritative-only DNS server"
   homepage "https://www.knot-dns.cz/"
-  url "https://secure.nic.cz/files/knot-dns/knot-3.0.5.tar.xz"
-  sha256 "695e7d7a0abefc5a8fd01f3b3080f030f33b0948215f84cd4892c6d904390802"
+  url "https://secure.nic.cz/files/knot-dns/knot-3.0.8.tar.xz"
+  sha256 "df723949c19ebecf9a7118894c3127e292eb09dc7274b5ce9b527409f42edfb0"
   license all_of: ["GPL-3.0-or-later", "0BSD", "BSD-3-Clause", "LGPL-2.0-or-later", "MIT"]
 
   livecheck do
@@ -11,10 +11,10 @@ class Knot < Formula
   end
 
   bottle do
-    sha256 arm64_big_sur: "81e5e6d0b9883d9c143bd9d7fbc3da8666d1f881fb85fb6d85333ea3b1d7755d"
-    sha256 big_sur:       "a7615132422d57291a42d344cc1b6ec83bc9cb5721082765c346c3fd3aeb04d4"
-    sha256 catalina:      "bc9130cbcf185f7672c6c51e2cc9e9d836aa1558a2a2d220cd1013b3dee804d2"
-    sha256 mojave:        "fdbf823b09142dc044f5640379c9a5dbb324c93fe447cf9c9b3911b45d53bbfb"
+    sha256 arm64_big_sur: "c9b9e7f2a4ab4011b2536e9128f8a3322eec3049c23d4e0f6b4e40148418bbea"
+    sha256 big_sur:       "f9ce679a2f6f2f644d487a0d95f0ea23f6447d31b7726b6b3929a89ed8b35303"
+    sha256 catalina:      "d9ae223d05364da5d9dcd723dcac504bbb336b589c9c4be86e24036471e1c635"
+    sha256 mojave:        "9a7c3728c7e45fbea0c8a183c71b4167f04eff83b87ff43e0cf4ab6a62d3a3ce"
   end
 
   head do

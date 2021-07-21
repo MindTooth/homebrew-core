@@ -1,11 +1,10 @@
 class Mpich < Formula
   desc "Implementation of the MPI Message Passing Interface standard"
   homepage "https://www.mpich.org/"
-  url "https://www.mpich.org/static/downloads/3.4.1/mpich-3.4.1.tar.gz"
-  mirror "https://fossies.org/linux/misc/mpich-3.4.1.tar.gz"
-  sha256 "8836939804ef6d492bcee7d54abafd6477d2beca247157d92688654d13779727"
+  url "https://www.mpich.org/static/downloads/3.4.2/mpich-3.4.2.tar.gz"
+  mirror "https://fossies.org/linux/misc/mpich-3.4.2.tar.gz"
+  sha256 "5c19bea8b84e8d74cca5f047e82b147ff3fba096144270e3911ad623d6c587bf"
   license "mpich2"
-  revision 2
 
   livecheck do
     url "https://www.mpich.org/static/downloads/"
@@ -13,10 +12,11 @@ class Mpich < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_big_sur: "f4461de2242f5a61ccc6eaffa8210cbe21b0f968a8b8e055e4c374bdd8909733"
-    sha256 cellar: :any, big_sur:       "b97881007a8fd728faabd6a4e75bed17aa66bb08a6d11ad77c022d476de5a129"
-    sha256 cellar: :any, catalina:      "cc76dc1e731cdf45f74d33ba42bfa9886d7109194898a72ae84b9d72f3450f3f"
-    sha256 cellar: :any, mojave:        "8c8f4b49c0022fa44bac9a54d43947db77824a3f1163aa519f3867ec8c795e8f"
+    sha256 cellar: :any,                 arm64_big_sur: "8c79cf6b224e90fbe5fbe111cdafb03d1b54f8f4a88c32a157af6d3ea29de7c4"
+    sha256 cellar: :any,                 big_sur:       "23d95423962812214194ca039fdd2d7dcca76626d291e02566989460b748a8df"
+    sha256 cellar: :any,                 catalina:      "3d5324ae766872fb9c2d6229ea97f49930c6a8239e38cc89bf5fb6a8f71d88d4"
+    sha256 cellar: :any,                 mojave:        "80d73225cb6e7242190049addb88898f920991a637f6dd7af07f13ffa28095fd"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "36cc3d6dc61cf19eeea37e07ce456200353b034c89952abc89e8999e2c198274"
   end
 
   head do

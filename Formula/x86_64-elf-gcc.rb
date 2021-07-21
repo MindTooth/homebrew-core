@@ -1,15 +1,18 @@
 class X8664ElfGcc < Formula
   desc "GNU compiler collection for x86_64-elf"
   homepage "https://gcc.gnu.org"
-  url "https://ftp.gnu.org/gnu/gcc/gcc-10.3.0/gcc-10.3.0.tar.xz"
-  mirror "https://ftpmirror.gnu.org/gcc/gcc-10.3.0/gcc-10.3.0.tar.xz"
-  sha256 "64f404c1a650f27fc33da242e1f2df54952e3963a49e06e73f6940f3223ac344"
+  url "https://ftp.gnu.org/gnu/gcc/gcc-11.1.0/gcc-11.1.0.tar.xz"
+  mirror "https://ftpmirror.gnu.org/gcc/gcc-11.1.0/gcc-11.1.0.tar.xz"
+  sha256 "4c4a6fb8a8396059241c2e674b85b351c26a5d678274007f076957afa1cc9ddf"
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
+  revision 1
 
   bottle do
-    sha256 big_sur:  "68a66ee578b9657b2bd58170f197ebdf0b119e15685e3cd452fedb8fcfd50a2e"
-    sha256 catalina: "549e05ad005a966dd2600603cd5efe8732842935229aa68f203d60eda21cd2e1"
-    sha256 mojave:   "f1e7d04a8ba94cac9ed262a68b5c2108338ad463876d0f8c5313d828497a653a"
+    sha256 arm64_big_sur: "4905572ad0661c23ac76b67d1a0bd3e049931358de5ab6d0974cd8909248e375"
+    sha256 big_sur:       "21b189008c08d63297dff0ab7b5afbeae535931567706d0feb3a98c03dcfcbbd"
+    sha256 catalina:      "121efc9cc9c15bdd9ed53c6a1cf581030798d57578b1fe67e2db443172725276"
+    sha256 mojave:        "054a23c8f3273ce7cce09539f38dcf17f4261b16f63f5dc4eca3873d2d419edf"
+    sha256 x86_64_linux:  "879c17dbb2856abe141e6b4468e5931205cc4508f5471fda86ad5a2e5a0c62ae"
   end
 
   depends_on "gmp"
@@ -17,11 +20,21 @@ class X8664ElfGcc < Formula
   depends_on "mpfr"
   depends_on "x86_64-elf-binutils"
 
+  # Remove when upstream has Apple Silicon support
+  if Hardware::CPU.arm?
+    patch do
+      # patch from gcc-11.1.0-arm branch
+      url "https://github.com/fxcoudert/gcc/commit/eea3046c5fa62d4dee47e074c7a758570d9da61c.patch?full_index=1"
+      sha256 "b55ca05a0ed32f69f63bbe708568df5ad62d938da0e34b515d601bb966d32d40"
+    end
+  end
+
   def install
+    target = "x86_64-elf"
     mkdir "x86_64-elf-gcc-build" do
-      system "../configure", "--target=x86_64-elf",
+      system "../configure", "--target=#{target}",
                              "--prefix=#{prefix}",
-                             "--infodir=#{info}/x86_64-elf-gcc",
+                             "--infodir=#{info}/#{target}",
                              "--disable-nls",
                              "--without-isl",
                              "--without-headers",

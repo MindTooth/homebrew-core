@@ -1,10 +1,9 @@
 class Postgresql < Formula
   desc "Object-relational database system"
   homepage "https://www.postgresql.org/"
-  url "https://ftp.postgresql.org/pub/source/v13.2/postgresql-13.2.tar.bz2"
-  sha256 "5fd7fcd08db86f5b2aed28fcfaf9ae0aca8e9428561ac547764c2a2b0f41adfc"
+  url "https://ftp.postgresql.org/pub/source/v13.3/postgresql-13.3.tar.bz2"
+  sha256 "3cd9454fa8c7a6255b6743b767700925ead1b9ab0d7a0f9dcb1151010f8eb4a1"
   license "PostgreSQL"
-  revision 2
   head "https://github.com/postgres/postgres.git"
 
   livecheck do
@@ -13,10 +12,11 @@ class Postgresql < Formula
   end
 
   bottle do
-    sha256 arm64_big_sur: "5bb80b319443cc57a44a9a9a8507a5255728d2caf359ef7e931c79c2c833b900"
-    sha256 big_sur:       "ee460f1f8beb4d877121faf4ebcbf8069f86a8ef4ae05fa342bc2fcdde75bb47"
-    sha256 catalina:      "1f50565ab7a703d85ecc37179e8d461dc82de4e3e6266ba085dd19a0b95ed5db"
-    sha256 mojave:        "c0a5828cb5caef09e7b4acd99b450b6d4ceb3a0d265a95b147e63e23fb6f7596"
+    sha256 arm64_big_sur: "7c0e1b76d60b428facd521c729323221712d7f6d9954e21da389aeeb2c62348e"
+    sha256 big_sur:       "eaf28965ead970ecfb327b121ec6a07f0a4e39865797a1a0383605a17e5911e3"
+    sha256 catalina:      "74e946503c73cd0efc55ad4b373efbd8f4fb8a9e26a670b878c6db25794aea4a"
+    sha256 mojave:        "36c7bde4788571e5b66ffe05b6174b62c69781d61c53c3ebcd9d278e8f148197"
+    sha256 x86_64_linux:  "5188f5e501606d9b525e3ac16f206e9be7ae7de33c4c914053a3bb73d571bb3c"
   end
 
   depends_on "pkg-config" => :build
@@ -37,6 +37,14 @@ class Postgresql < Formula
   on_linux do
     depends_on "linux-pam"
     depends_on "util-linux"
+
+    # configure patch to deal with OpenLDAP 2.5
+    # (revisit on next release)
+    depends_on "autoconf@2.69" => :build
+    patch do
+      url "https://raw.githubusercontent.com/Homebrew/formula-patches/10fe8d35eb7323bb882c909a0ec065ae01401626/postgresql/openldap-2.5.patch"
+      sha256 "7b1e1a88752482c59f6971dfd17a2144ed60e6ecace8538200377ee9b1b7938c"
+    end
   end
 
   def install
@@ -52,7 +60,6 @@ class Postgresql < Formula
       --sysconfdir=#{etc}
       --docdir=#{doc}
       --enable-thread-safety
-      --with-bonjour
       --with-gssapi
       --with-icu
       --with-ldap
@@ -61,13 +68,24 @@ class Postgresql < Formula
       --with-openssl
       --with-pam
       --with-perl
-      --with-tcl
       --with-uuid=e2fs
     ]
+    on_macos do
+      args += %w[
+        --with-bonjour
+        --with-tcl
+      ]
+    end
 
     # PostgreSQL by default uses xcodebuild internally to determine this,
     # which does not work on CLT-only installs.
     args << "PG_SYSROOT=#{MacOS.sdk_path}" if MacOS.sdk_root_needed?
+
+    on_linux do
+      # rebuild `configure` after patching
+      # (remove if patch block not needed)
+      system "autoreconf", "-ivf"
+    end
 
     system "./configure", *args
     system "make"
@@ -78,6 +96,12 @@ class Postgresql < Formula
                                     "pkgincludedir=#{include}/postgresql",
                                     "includedir_server=#{include}/postgresql/server",
                                     "includedir_internal=#{include}/postgresql/internal"
+
+    on_linux do
+      inreplace lib/"postgresql/pgxs/src/Makefile.global",
+                "LD = #{HOMEBREW_PREFIX}/Homebrew/Library/Homebrew/shims/linux/super/ld",
+                "LD = #{HOMEBREW_PREFIX}/bin/ld"
+    end
   end
 
   def post_install

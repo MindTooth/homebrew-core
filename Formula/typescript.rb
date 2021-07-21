@@ -3,16 +3,14 @@ require "language/node"
 class Typescript < Formula
   desc "Language for application scale JavaScript development"
   homepage "https://www.typescriptlang.org/"
-  url "https://registry.npmjs.org/typescript/-/typescript-4.2.4.tgz"
-  sha256 "6eed9794296d93c83074e022652ac680314e0cf37b969945e9f0da4e47332901"
+  url "https://registry.npmjs.org/typescript/-/typescript-4.3.5.tgz"
+  sha256 "c7be550da858be7abfc73dd0b9060ab23ce835ae3b05931f4500a25c09766d45"
   license "Apache-2.0"
   head "https://github.com/Microsoft/TypeScript.git"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "5e930650881dfb201ff65988c3d4c27eab7969bd7ed4d4a87da05061360c394c"
-    sha256 cellar: :any_skip_relocation, big_sur:       "a088a887d6c6638d808045034dd75177803d86eb313e604d1ab74336ba19d969"
-    sha256 cellar: :any_skip_relocation, catalina:      "2c4605739270e5b3681adfd5fe9e3a1deef93b4f1790ed0c6cdb801727ca0080"
-    sha256 cellar: :any_skip_relocation, mojave:        "6c53039ac025c59db02018d4a36f9d95000f7b4df5f22d751f26dcad9cc663ef"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "fce42ea57d9ea2e049816fa1588462a9f5a3c3b12889da8a5d5fefa00dbac619"
+    sha256 cellar: :any_skip_relocation, all:          "a7792db17c8c956035fba6a02e2f7a305010cab512e7bf5b1c677adec9900afd"
   end
 
   depends_on "node"

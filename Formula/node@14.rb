@@ -1,10 +1,9 @@
 class NodeAT14 < Formula
   desc "Platform built on V8 to build network applications"
   homepage "https://nodejs.org/"
-  url "https://nodejs.org/dist/v14.16.1/node-v14.16.1.tar.gz"
-  sha256 "5f5080427abddde7f22fd2ba77cd2b8a1f86253277a1eec54bc98a202728ce80"
+  url "https://nodejs.org/dist/v14.17.3/node-v14.17.3.tar.gz"
+  sha256 "dcbd156506ee79ee48439257626ca0a6db3d7eab8cb0208db6979125ae7d3a95"
   license "MIT"
-  revision 1
 
   livecheck do
     url "https://nodejs.org/dist/"
@@ -12,10 +11,11 @@ class NodeAT14 < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_big_sur: "9c6d7979a4ce9fb2748db735323981da246b33fb3729ebe9621a5245fa86d19e"
-    sha256 cellar: :any, big_sur:       "98b809f5232ce62937f1e6a341db724f4cf8589e4742bd93c96b4332f4b30c2a"
-    sha256 cellar: :any, catalina:      "0aa9ab6ebed657fd5f054e39cf21df1a22dd0cccaa80396d4833226b66144fa8"
-    sha256 cellar: :any, mojave:        "a7f082b05947ce80e6294d234e1911806c769eb8843f939bd05d2dd4c70a2220"
+    sha256 cellar: :any,                 arm64_big_sur: "93f9271fff083158429d5d67eb6e5ea9c5a5e1bffde4c221d86070f03db8950f"
+    sha256 cellar: :any,                 big_sur:       "c87d777aa21e21e629a9e0d725eb3f60c459078dd0e421209f9dc944b707408d"
+    sha256 cellar: :any,                 catalina:      "d9da78895841afbc6fc312399c7df295c611fe44260d9740799a8aa0f246ca4a"
+    sha256 cellar: :any,                 mojave:        "7370ddc1acd747aad811c0a16191250d0b532954cd790c43bfb591d6b75bbe0d"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a205b6ed81a7fc3916b9180b6635b34fc3b698e7af6491c67fb8a2541bcd9095"
   end
 
   keg_only :versioned_formula
@@ -23,14 +23,6 @@ class NodeAT14 < Formula
   depends_on "pkg-config" => :build
   depends_on "python@3.9" => :build
   depends_on "icu4c"
-
-  # Patch for compatibility with ICU 69
-  # https://github.com/v8/v8/commit/035c305ce7761f51328b45f1bd83e26aef267c9d
-  patch do
-    url "https://github.com/v8/v8/commit/035c305ce7761f51328b45f1bd83e26aef267c9d.patch?full_index=1"
-    sha256 "dfe0f6c312b0bea2733252db41fedae330afa21b055ee886b0b8f9ca780e2901"
-    directory "deps/v8"
-  end
 
   def install
     # make sure subprocesses spawned by make are using our Python 3

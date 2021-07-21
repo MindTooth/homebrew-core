@@ -1,8 +1,8 @@
 class Pyenv < Formula
   desc "Python version management"
   homepage "https://github.com/pyenv/pyenv"
-  url "https://github.com/pyenv/pyenv/archive/1.2.27.tar.gz"
-  sha256 "7e061b98f66ed60070a3920351bfc991d132f28ed4c7e037b8e726f825261586"
+  url "https://github.com/pyenv/pyenv/archive/v2.0.3.tar.gz"
+  sha256 "929c7dfcdf3ca3f584e177ede96950aeef40d3300bf68560add9dd1fb9059156"
   license "MIT"
   version_scheme 1
   head "https://github.com/pyenv/pyenv.git"
@@ -13,10 +13,11 @@ class Pyenv < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_big_sur: "5aacdc10bc8751051d6635c8fc45decb36c6e9e1f8e0660cb921b3b80736321b"
-    sha256 cellar: :any, big_sur:       "78939e92d2be55add6503458fa96059e36bb9e37e5b9fb72e724d1813b275ebb"
-    sha256 cellar: :any, catalina:      "7fa8220ac770c8b2893adb7c19400b380928065fdd3d82b27a5231327b77e78e"
-    sha256 cellar: :any, mojave:        "f0a10877d4f8fff9aeb8aaef410f534ff7279c62fc9e337c19136350733c9ee9"
+    sha256 cellar: :any,                 arm64_big_sur: "57f0a28fe0a6e6ddfdab5f34c0e49712f2eb962315c1042eec7241ece47b0f5d"
+    sha256 cellar: :any,                 big_sur:       "5e1bf2df8261958ef972bab6f3ceb415f94b8c7a36c69c927e611f1adad22493"
+    sha256 cellar: :any,                 catalina:      "6fa7b23b73c8cdfcd4c18251f616f3ab9b10ef3526086996528340a78a8a0911"
+    sha256 cellar: :any,                 mojave:        "c1bd0f0420c203c1810115f7a854394d06dcc28966c45ad011ba89f5af3e6c2a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6518953d1580d6c0c0e682a6f24e977e277a0eb3ce8e570ce86692c3b0dcc8a3"
   end
 
   depends_on "autoconf"
@@ -29,6 +30,10 @@ class Pyenv < Formula
   uses_from_macos "ncurses"
   uses_from_macos "xz"
   uses_from_macos "zlib"
+
+  on_linux do
+    depends_on "python@3.9" => :test
+  end
 
   def install
     inreplace "libexec/pyenv", "/usr/local", HOMEBREW_PREFIX
@@ -57,7 +62,9 @@ class Pyenv < Formula
     chmod "+x", foo_script
 
     # Test versions.
-    versions = shell_output("eval \"$(#{bin}/pyenv init -)\" && pyenv versions").split("\n")
+    versions = shell_output("eval \"$(#{bin}/pyenv init --path)\" " \
+                            "&& eval \"$(#{bin}/pyenv init -)\" " \
+                            "&& pyenv versions").split("\n")
     assert_equal 2, versions.length
     assert_match(/\* system/, versions[0])
     assert_equal("  1.2.3", versions[1])
@@ -65,6 +72,8 @@ class Pyenv < Formula
     # Test rehash.
     system "pyenv", "rehash"
     refute_match "Cellar", (pyenv_root/"shims/foo").read
-    assert_equal "hello", shell_output("eval \"$(#{bin}/pyenv init -)\" && PYENV_VERSION='1.2.3' foo").chomp
+    assert_equal "hello", shell_output("eval \"$(#{bin}/pyenv init --path)\" " \
+                                       "&& eval \"$(#{bin}/pyenv init -)\" " \
+                                       "&& PYENV_VERSION='1.2.3' foo").chomp
   end
 end

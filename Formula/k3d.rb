@@ -1,8 +1,8 @@
 class K3d < Formula
   desc "Little helper to run Rancher Lab's k3s in Docker"
   homepage "https://k3d.io"
-  url "https://github.com/rancher/k3d/archive/v4.4.3.tar.gz"
-  sha256 "b7ff3d5fac9d0bc6c58c3e5abdb5b2f38bf63a7a6bf0c3872e64f63879f4c160"
+  url "https://github.com/rancher/k3d/archive/v4.4.7.tar.gz"
+  sha256 "036685d39397c89c946057ac2e333f157ac460f5251413f1db8629cb7462b58a"
   license "MIT"
 
   livecheck do
@@ -11,10 +11,11 @@ class K3d < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "79d780f452c7646fd7e902e340d5ed2e5bf17f9c8e563635a1db916b6d49d06a"
-    sha256 cellar: :any_skip_relocation, big_sur:       "9dedc3c56e23abeaa53b22746ec07318a43e06134aad8fc66f814ec5d56adcde"
-    sha256 cellar: :any_skip_relocation, catalina:      "602ac41c99582edc3484333d2996802dec63fc1b27c8394df05777d5d209524a"
-    sha256 cellar: :any_skip_relocation, mojave:        "c5cd1b6c5ae0c752328954b70c7ac2209149b5a90f01d7a533940aff3c8fe8ba"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "d68babfb2e3258b8d9859d502427a433312a8dd7d2262d707bb225abb76318b8"
+    sha256 cellar: :any_skip_relocation, big_sur:       "ffcaa4fc81f9f667301178f3c649785586af8befa82b39de9deffcbbbb175ea1"
+    sha256 cellar: :any_skip_relocation, catalina:      "c6cdc867a38476d3dd11a3aa863cc08a38889551bcea8e3fdcde1e4e310c32fa"
+    sha256 cellar: :any_skip_relocation, mojave:        "4bcf06a1c690c414ff71b5624c6d505021cd88f2908e07ab4caa1306dd0a3b03"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5a85f8499530980e40c301dd177d76530b27b88b0769306517e3740c0fcda00b"
   end
 
   depends_on "go" => :build
@@ -23,7 +24,7 @@ class K3d < Formula
     system "go", "build",
            "-mod", "vendor",
            "-ldflags", "-s -w -X github.com/rancher/k3d/v#{version.major}/version.Version=v#{version}"\
-           " -X github.com/rancher/k3d/v#{version.major}/version.K3sVersion=latest",
+                       " -X github.com/rancher/k3d/v#{version.major}/version.K3sVersion=latest",
            "-trimpath", "-o", bin/"k3d"
 
     # Install bash completion

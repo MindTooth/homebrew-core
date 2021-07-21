@@ -3,8 +3,8 @@ class Artifactory < Formula
   homepage "https://www.jfrog.com/artifactory/"
   # v7 is available but does contain a number of pre-builts that need to be avoided.
   # Note that just using the source archive is not sufficient.
-  url "https://releases.jfrog.io/artifactory/bintray-artifactory/org/artifactory/oss/jfrog-artifactory-oss/6.23.16/jfrog-artifactory-oss-6.23.16.zip"
-  sha256 "e96dfacc08f2a9dd88a2b1e9d6170b8639067da323c31a0aa614dfc2a92255ff"
+  url "https://releases.jfrog.io/artifactory/bintray-artifactory/org/artifactory/oss/jfrog-artifactory-oss/6.23.23/jfrog-artifactory-oss-6.23.23.zip"
+  sha256 "6fb90257b705a16ffb99467187e0beeaced4aa4e4c2fd0686a976f9255f1c63f"
   license "AGPL-3.0-or-later"
 
   livecheck do
@@ -13,7 +13,7 @@ class Artifactory < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "aeac094e7c8b7b854d7c281d1d0690e77bc96b58e021c14e00d412d24454b2d9"
+    sha256 cellar: :any_skip_relocation, all: "65395028c2f944901489c4176d94c2e22eda1c0d13d4d73294d3baa1e166ff4f"
   end
 
   depends_on "openjdk"
@@ -51,28 +51,10 @@ class Artifactory < Formula
     libexec.install_symlink data => "data"
   end
 
-  plist_options manual: "#{HOMEBREW_PREFIX}/opt/artifactory/libexec/bin/artifactory.sh"
-
-  def plist
-    <<~EOS
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-        <dict>
-          <key>Label</key>
-          <string>com.jfrog.artifactory</string>
-
-          <key>WorkingDirectory</key>
-          <string>#{libexec}</string>
-
-          <key>Program</key>
-          <string>#{bin}/artifactory.sh</string>
-
-          <key>KeepAlive</key>
-          <true/>
-        </dict>
-      </plist>
-    EOS
+  service do
+    run opt_bin/"artifactory.sh"
+    keep_alive true
+    working_dir libexec
   end
 
   test do

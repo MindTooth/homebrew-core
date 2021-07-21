@@ -2,15 +2,17 @@ class Bazelisk < Formula
   desc "User-friendly launcher for Bazel"
   homepage "https://github.com/bazelbuild/bazelisk/"
   url "https://github.com/bazelbuild/bazelisk.git",
-      tag:      "v1.8.1",
-      revision: "97a0d60468dc696cea3cf1d252b526f1ac6a9090"
+      tag:      "v1.10.1",
+      revision: "cf1205edacc5bc8a781786b36324922640ea6ac9"
   license "Apache-2.0"
   head "https://github.com/bazelbuild/bazelisk.git"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, big_sur:  "9839a3e5083089806a4f524a09c79b8012fa50bf7423c6d5efdd4990a752bcec"
-    sha256 cellar: :any_skip_relocation, catalina: "97e1a500477ed6c4329eba706b992400a429292d27a798bc268f22e909309863"
-    sha256 cellar: :any_skip_relocation, mojave:   "e7abf78c67c68823de5de200660d94d8c3549c5565c77983d27cc3ae255e6b53"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "3aa568fb42d31462693efea8051e7ef2489e1f1f22a07500cfd513b0c7f97cf0"
+    sha256 cellar: :any_skip_relocation, big_sur:       "a0589844659d97147c7fab9b3a623192527cfbaed269bf4a502aee0dc2dcef18"
+    sha256 cellar: :any_skip_relocation, catalina:      "4b334992c7b2cd433074e100a3675bc07a7ab64de8fbb35beea250d229d12363"
+    sha256 cellar: :any_skip_relocation, mojave:        "f774b348b3e1403522e6a67126b9791f20245ea3002c23c4786094d82c9a9507"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "49d53dd4a0f10c28bc430501cf4e16fbb90d9ad316076e42c12533ea0daf2261"
   end
 
   depends_on "go" => :build
@@ -23,7 +25,7 @@ class Bazelisk < Formula
   end
 
   def install
-    system "go", "build", *std_go_args, "-ldflags", "-X main.BazeliskVersion=#{version}"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.BazeliskVersion=#{version}")
 
     bin.install_symlink "bazelisk" => "bazel"
 
@@ -39,7 +41,8 @@ class Bazelisk < Formula
     # This is an older than current version, so that we can test that bazelisk
     # will target an explicit version we specify. This version shouldn't need to
     # be bumped.
-    ENV["USE_BAZEL_VERSION"] = "0.28.0"
-    assert_match "Build label: 0.28.0", shell_output("#{bin}/bazelisk version")
+    bazel_version = Hardware::CPU.arm? ? "4.1.0" : "4.0.0"
+    ENV["USE_BAZEL_VERSION"] = bazel_version
+    assert_match "Build label: #{bazel_version}", shell_output("#{bin}/bazelisk version")
   end
 end

@@ -1,9 +1,9 @@
 class Sbt < Formula
   desc "Build tool for Scala projects"
   homepage "https://www.scala-sbt.org/"
-  url "https://github.com/sbt/sbt/releases/download/v1.5.1/sbt-1.5.1.tgz"
-  mirror "https://sbt-downloads.cdnedge.bluemix.net/releases/v1.5.1/sbt-1.5.1.tgz"
-  sha256 "676d35685f6bf0c3414a37cfe2f4a576bea08f10d43b82cae62a91926fc44b37"
+  url "https://github.com/sbt/sbt/releases/download/v1.5.5/sbt-1.5.5.tgz"
+  mirror "https://sbt-downloads.cdnedge.bluemix.net/releases/v1.5.5/sbt-1.5.5.tgz"
+  sha256 "c0fcd50cf5c91ed27ad01c5c6a8717b62700c87a50ff9b0e7573b227acb2b3c9"
   license "Apache-2.0"
 
   livecheck do
@@ -12,7 +12,7 @@ class Sbt < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "13bcd5a2344e0d9a6f92c979b92f11df41e110fa7bb1b5046aa30e404e6df99f"
+    sha256 cellar: :any_skip_relocation, all: "3ab83d5f06068e59c537daa0aa5ad18c56b91204fe2f7a8bbb274129bfdcf521"
   end
 
   depends_on arch: :x86_64

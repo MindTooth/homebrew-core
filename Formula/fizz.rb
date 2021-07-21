@@ -1,15 +1,16 @@
 class Fizz < Formula
   desc "C++14 implementation of the TLS-1.3 standard"
   homepage "https://github.com/facebookincubator/fizz"
-  url "https://github.com/facebookincubator/fizz/releases/download/v2021.05.03.00/fizz-v2021.05.03.00.tar.gz"
-  sha256 "5149161d91b7e786744d10ff276b71e9727c3de8f9a03f1c02340497c1742c77"
+  url "https://github.com/facebookincubator/fizz/releases/download/v2021.06.14.00/fizz-v2021.06.14.00.tar.gz"
+  sha256 "d95050d02586e30c71f3a517cca619a6e415932b438ff20a62ee3192a389276a"
   license "BSD-2-Clause"
   head "https://github.com/facebookincubator/fizz.git"
 
   bottle do
-    sha256 cellar: :any, arm64_big_sur: "74bc6e210b79df482ed2834c05d65369a4289342aa0aa64de37537f6237b2afb"
-    sha256 cellar: :any, big_sur:       "f92afd22c292fe0b9fc4b9676f2d1b2f313eeeef42afc049d87814ce31c8a227"
-    sha256 cellar: :any, catalina:      "e647c9fef56edb338ba48e83d7c1334263a619b489f87fcdd36fb1d44193e377"
+    sha256 cellar: :any, arm64_big_sur: "ef86ea814834d924cb092bbf98be44bfaaa09751ce364d0cd621a1333e55a3b1"
+    sha256 cellar: :any, big_sur:       "56af4adff8f9d350fd414aa6d7f21c9c62f8a8bc22dd2d79abea2fc417c059d8"
+    sha256 cellar: :any, catalina:      "89f7e6313a1b8e90c1aa0278afaa75d793d4fd737752f95ce6ca4c552c3a333e"
+    sha256 cellar: :any, mojave:        "a375a873c339bb30943def2567beb73f2783a6daaa6798515049647cc0b0d25e"
   end
 
   depends_on "cmake" => :build
@@ -22,8 +23,6 @@ class Fizz < Formula
   depends_on "libevent"
   depends_on "libsodium"
   depends_on "lz4"
-  # https://github.com/facebook/folly/issues/1545
-  depends_on macos: :catalina
   depends_on "openssl@1.1"
   depends_on "snappy"
   depends_on "zstd"

@@ -1,23 +1,20 @@
 class Prestodb < Formula
   desc "Distributed SQL query engine for big data"
   homepage "https://prestodb.io"
-  url "https://search.maven.org/remotecontent?filepath=com/facebook/presto/presto-server/0.252/presto-server-0.252.tar.gz"
-  sha256 "42035069b182e8d6effc7f439082072368062bfd2e71834d2f775d2fb4fb72f7"
+  url "https://search.maven.org/remotecontent?filepath=com/facebook/presto/presto-server/0.256/presto-server-0.256.tar.gz"
+  sha256 "2326f3684dead9e44b2e3d7f5e7524345af41e9cd0168251eaefe413b857f290"
   license "Apache-2.0"
 
-  # The source of the Presto download page at https://prestodb.io/download.html
-  # contains old version information. The current version information is loaded
-  # from the JavaScript file below, so we check that instead. We don't check
-  # Maven because sometimes the directory listing page contains a newer version
-  # that hasn't been released yet and we probably don't want to upgrade until
-  # it's official on the first-party website, etc.
+  # Upstream has said that we should check Maven for Presto version information
+  # and the highest version found there is newest:
+  # https://github.com/prestodb/presto/issues/16200
   livecheck do
-    url "https://prestodb.io/static/js/version.js"
-    regex(/latest_presto_version.*?(\d+(?:\.\d+)+)/i)
+    url "https://search.maven.org/remotecontent?filepath=com/facebook/presto/presto-server/"
+    regex(%r{href=["']?v?(\d+(?:\.\d+)+)/?["' >]}i)
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "f3d9c07008001b6a51cca9c12858c7c40e6bd140110785a346941d3ec2993885"
+    sha256 cellar: :any_skip_relocation, all: "bb24e11246523ad80b74f2374dd97c609e9eb13a85bb1d5b323fdad836f265c3"
   end
 
   depends_on "openjdk"
@@ -25,8 +22,8 @@ class Prestodb < Formula
   conflicts_with "prestosql", because: "both install `presto` and `presto-server` binaries"
 
   resource "presto-cli" do
-    url "https://search.maven.org/remotecontent?filepath=com/facebook/presto/presto-cli/0.252/presto-cli-0.252-executable.jar"
-    sha256 "a7fca41bf1adc6f6717ac27ef83f988447d2671ba41967ca852770c46a5ca084"
+    url "https://search.maven.org/remotecontent?filepath=com/facebook/presto/presto-cli/0.256/presto-cli-0.256-executable.jar"
+    sha256 "f0b8a665c0df452fc58aed4a9f6371812ee1ce9f5eff10a4e4b53e4cb1203639"
   end
 
   def install

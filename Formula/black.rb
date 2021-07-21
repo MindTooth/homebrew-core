@@ -3,8 +3,8 @@ class Black < Formula
 
   desc "Python code formatter"
   homepage "https://black.readthedocs.io/en/stable/"
-  url "https://files.pythonhosted.org/packages/52/7e/6a41d1504225ef9213731e69ecebfa8fe78c614bcb01e1147f6242073636/black-21.5b0.tar.gz"
-  sha256 "9dc2042018ca10735366d944c2c12d9cad6dec74a3d5f679d09384ea185d9943"
+  url "https://files.pythonhosted.org/packages/20/1b/e167bc0b94bebaa05bb337978b527f2a71bd67f8769ef5a8dbcb44b89c4b/black-21.7b0.tar.gz"
+  sha256 "c8373c6491de9362e39271630b65b964607bc5c79c83783547d76c839b3aa219"
   license "MIT"
 
   livecheck do
@@ -13,10 +13,10 @@ class Black < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "5a1a80580fec048bb105fe1df5ae1d51e3fe708883802eef515788b490952424"
-    sha256 cellar: :any_skip_relocation, big_sur:       "f7d159b8f1ce3bdff34ee1c46de9fda1eb7bac4dc028cd95e64c8c28f1f0552d"
-    sha256 cellar: :any_skip_relocation, catalina:      "dc578c03b161efa77a02264b29f3a00d1fd8e37ede354412afbd407d8a6df887"
-    sha256 cellar: :any_skip_relocation, mojave:        "abe8f4bc4e374f816fb2ab50459e810d2981f3da5b005a0b79f41c9cfb357351"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "97a95202049c18ad1bd83f220492cbe342b06e3ff57ce47fdea2868a22eeec5d"
+    sha256 cellar: :any_skip_relocation, big_sur:       "cab87ba9fcc15b5d43d94a10f0618b31906b34a1e302bcbbda6cc00dd7ac4a13"
+    sha256 cellar: :any_skip_relocation, catalina:      "0e753b1b5e2d4876629911a2d8807da5bb9b4be20fe585853036ff2d46286345"
+    sha256 cellar: :any_skip_relocation, mojave:        "372d2251db51bb0245fa86ddd1b5da89963a3af1ba2392b732df5555a5b4c96e"
   end
 
   depends_on "python@3.9"
@@ -42,8 +42,8 @@ class Black < Formula
   end
 
   resource "attrs" do
-    url "https://files.pythonhosted.org/packages/f0/cb/80a4a274df7da7b8baf083249b0890a0579374c3d74b5ac0ee9291f912dc/attrs-20.3.0.tar.gz"
-    sha256 "832aa3cde19744e49938b91fea06d69ecb9e649c93ba974535d08ad92164f700"
+    url "https://files.pythonhosted.org/packages/ed/d6/3ebca4ca65157c12bd08a63e20ac0bdc21ac7f3694040711f9fd073c0ffb/attrs-21.2.0.tar.gz"
+    sha256 "ef6aaac3ca6cd92904cdd0d83f629a15f18053ec84e6432106f7a4d04ae4f5fb"
   end
 
   resource "chardet" do
@@ -52,13 +52,13 @@ class Black < Formula
   end
 
   resource "click" do
-    url "https://files.pythonhosted.org/packages/27/6f/be940c8b1f1d69daceeb0032fee6c34d7bd70e3e649ccac0951500b4720e/click-7.1.2.tar.gz"
-    sha256 "d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a"
+    url "https://files.pythonhosted.org/packages/21/83/308a74ca1104fe1e3197d31693a7a2db67c2d4e668f20f43a2fca491f9f7/click-8.0.1.tar.gz"
+    sha256 "8c04c11192119b1ef78ea049e0a6f0463e4c48ef00a30160c704337586f3ad7a"
   end
 
   resource "idna" do
-    url "https://files.pythonhosted.org/packages/9f/24/1444ee2c9aee531783c031072a273182109c6800320868ab87675d147a05/idna-3.1.tar.gz"
-    sha256 "c5b02147e01ea9920e6b0a3f1f7bb833612d507592c837a6c49552768f4054e1"
+    url "https://files.pythonhosted.org/packages/cb/38/4c4d00ddfa48abe616d7e572e02a04273603db446975ab46bbcd36552005/idna-3.2.tar.gz"
+    sha256 "467fbad99067910785144ce333826c71fb0e63a425657295239737f7ecd125f3"
   end
 
   resource "multidict" do
@@ -77,13 +77,13 @@ class Black < Formula
   end
 
   resource "regex" do
-    url "https://files.pythonhosted.org/packages/38/3f/4c42a98c9ad7d08c16e7d23b2194a0e4f3b2914662da8bc88986e4e6de1f/regex-2021.4.4.tar.gz"
-    sha256 "52ba3d3f9b942c49d7e4bc105bb28551c44065f139a65062ab7912bef10c9afb"
+    url "https://files.pythonhosted.org/packages/c0/d1/ad6afa6000ab869f6af2c85985d40558ffb298d9fcb2ab04c0648436008f/regex-2021.7.6.tar.gz"
+    sha256 "8394e266005f2d8c6f0bc6780001f7afa3ef81a7a2111fa35058ded6fce79e4d"
   end
 
-  resource "toml" do
-    url "https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz"
-    sha256 "b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"
+  resource "tomli" do
+    url "https://files.pythonhosted.org/packages/5f/9e/0aa632eb780a5e3ff22e3c125dd10859eaccb49404c64b49ce3d517f7e4c/tomli-1.0.4.tar.gz"
+    sha256 "be670d0d8d7570fd0ea0113bd7bb1ba3ac6706b4de062cc4c952769355c9c268"
   end
 
   resource "typing-extensions" do
@@ -100,33 +100,14 @@ class Black < Formula
     virtualenv_install_with_resources
   end
 
-  plist_options startup: true, manual: "blackd"
+  plist_options startup: true
 
-  def plist
-    <<~EOS
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-      <dict>
-        <key>KeepAlive</key>
-        <true/>
-        <key>Label</key>
-        <string>#{plist_name}</string>
-        <key>ProgramArguments</key>
-        <array>
-          <string>#{opt_bin}/blackd</string>
-        </array>
-        <key>RunAtLoad</key>
-        <true/>
-        <key>WorkingDirectory</key>
-        <string>#{HOMEBREW_PREFIX}</string>
-        <key>StandardOutPath</key>
-        <string>#{var}/log/blackd.log</string>
-        <key>StandardErrorPath</key>
-        <string>#{var}/log/blackd.log</string>
-      </dict>
-      </plist>
-    EOS
+  service do
+    run opt_bin/"blackd"
+    keep_alive true
+    working_dir HOMEBREW_PREFIX
+    log_path var/"log/blackd.log"
+    error_log_path var/"log/blackd.log"
   end
 
   test do

@@ -1,8 +1,8 @@
 class Notmuch < Formula
   desc "Thread-based email index, search, and tagging"
   homepage "https://notmuchmail.org/"
-  url "https://notmuchmail.org/releases/notmuch-0.32.tar.xz"
-  sha256 "e91e5706ffb615d5ebc5a47ce197d4ec2efca06eea77a0ddcb7af2e4c2543646"
+  url "https://notmuchmail.org/releases/notmuch-0.32.2.tar.xz"
+  sha256 "8e0a7eb8ff2e6011ef48b2bf11d79b9c4bb74511cfe2987758b64898c2a2ded7"
   license "GPL-3.0-or-later"
   head "https://git.notmuchmail.org/git/notmuch", using: :git
 
@@ -12,13 +12,15 @@ class Notmuch < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_big_sur: "93c6a602428df755145f1ac1830ba8991390af976dfd2b76889011a530602e2d"
-    sha256 cellar: :any, big_sur:       "3a419b3c9233084d44e5a7f18c164e696f9fb8520cea64e7fadcd25c0ffd3a9a"
-    sha256 cellar: :any, catalina:      "44858e39a6d51bf229e7e7ae6b2ca09b631be98a3706c56bf81fb77d1cdd6db9"
-    sha256 cellar: :any, mojave:        "a2835bdcb32a8d376cb4c03735c429e9d584776c23f06913ec625d9480d4b0b7"
+    sha256 cellar: :any,                 arm64_big_sur: "d8529ee44554e96bb5ffaa1afecf48e9d3d9e76295217b3c6c798702a027370f"
+    sha256 cellar: :any,                 big_sur:       "0f8769ef93addb20475aa9c17ca144358c66b068cc6467d43c5464633cee5355"
+    sha256 cellar: :any,                 catalina:      "c3ba8b9912ef53894f73f5005cd13e20769cf1fc49df8017ab985225f3f0f68c"
+    sha256 cellar: :any,                 mojave:        "8bb7a7a888f98972f63d05c62de0cef1613338abc70810d01ff5d5f0cb834ee4"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "52de489510b6d6c8c905ca6a1c34d4a55a41d8cdee984fa06ce027c145f1107b"
   end
 
   depends_on "doxygen" => :build
+  depends_on "emacs" => :build
   depends_on "libgpg-error" => :build
   depends_on "pkg-config" => :build
   depends_on "sphinx-doc" => :build
@@ -46,6 +48,7 @@ class Notmuch < Formula
     system "./configure", *args
     system "make", "V=1", "install"
 
+    elisp.install Dir["emacs/*.el"]
     bash_completion.install "completion/notmuch-completion.bash"
 
     (prefix/"vim/plugin").install "vim/notmuch.vim"

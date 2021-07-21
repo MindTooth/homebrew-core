@@ -1,15 +1,16 @@
 class Yq < Formula
   desc "Process YAML documents from the CLI"
   homepage "https://github.com/mikefarah/yq"
-  url "https://github.com/mikefarah/yq/archive/v4.7.1.tar.gz"
-  sha256 "19a7c43aaac678065f436ddfdf8b0a75dd3883984f4b9548cabdf53eb09932f9"
+  url "https://github.com/mikefarah/yq/archive/v4.11.1.tar.gz"
+  sha256 "0a4cb1e93114334ccbbffd468f29b27d0fae4857865ae91c570c06ef94a9bd33"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "872da7968c97e34dd215195ca2adfab3cb92ef7f192b36ec6662be73fae3ceac"
-    sha256 cellar: :any_skip_relocation, big_sur:       "f99a4129e6c51f1aba0a900a879bb7097d55443e81ab84b1a1d007d76d71eb6b"
-    sha256 cellar: :any_skip_relocation, catalina:      "cd975b1440a2e764e9e287969d8ab65321041507a12b7254b70e8231a44e2890"
-    sha256 cellar: :any_skip_relocation, mojave:        "bc16de921140af814937d7f483c1edce2742fbda07f48b6677f2b3564e1d6fde"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "a82c2cb18dad78b39932bd95626c1e7ad8644b700520602c259116c72c7f322a"
+    sha256 cellar: :any_skip_relocation, big_sur:       "2f628432c238de97aa6df16708be9cd0f6f11d1a6fbffa3d0191015eb1b55f82"
+    sha256 cellar: :any_skip_relocation, catalina:      "54f29e27efc6fe51145860641f953451c99b6cdec6ee6e6cd3909f37973b3f04"
+    sha256 cellar: :any_skip_relocation, mojave:        "cfe123d503dc2e9258922fe1fa6c648e023f3d38c03d65db58bd5adba6c8ed78"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c3b9f179ae859263eeeb105d2940c8a99fd317e8804f5ce93e0957d2afe296dc"
   end
 
   depends_on "go" => :build
@@ -17,7 +18,7 @@ class Yq < Formula
   conflicts_with "python-yq", because: "both install `yq` executables"
 
   def install
-    system "go", "build", "-ldflags", "-s -w", *std_go_args
+    system "go", "build", *std_go_args(ldflags: "-s -w")
 
     (bash_completion/"yq").write Utils.safe_popen_read("#{bin}/yq", "shell-completion", "bash")
     (zsh_completion/"_yq").write Utils.safe_popen_read("#{bin}/yq", "shell-completion", "zsh")

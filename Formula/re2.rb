@@ -1,9 +1,9 @@
 class Re2 < Formula
   desc "Alternative to backtracking PCRE-style regular expression engines"
   homepage "https://github.com/google/re2"
-  url "https://github.com/google/re2/archive/2021-04-01.tar.gz"
-  version "20210401"
-  sha256 "358aedf71dbf26506848905f5d4417b7adba5cf44d3bbcf70bf4ef68ccb0871e"
+  url "https://github.com/google/re2/archive/2021-06-01.tar.gz"
+  version "20210601"
+  sha256 "26155e050b10b5969e986dab35654247a3b1b295e0532880b5a9c13c0a700ceb"
   license "BSD-3-Clause"
   head "https://github.com/google/re2.git"
 
@@ -19,10 +19,12 @@ class Re2 < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_big_sur: "738497c6fee23638e61ce8ccc4b42ca61dfce05d47fcecdcbd1488b567b59ce3"
-    sha256 cellar: :any, big_sur:       "aa7b6288f4e59f6fc9a9b7cab7bf20a48bf06ddd4247e14a70cf3dc6fe3bd5da"
-    sha256 cellar: :any, catalina:      "01071512713d4ff42a2158f00fce4d3ff6e614729afaa765c29f47980832a8cd"
-    sha256 cellar: :any, mojave:        "9fbf16117fa47ac6f0c3b247d13c34f4b1f986e0975cec141414452a6b504864"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_big_sur: "3951877486d2ce0e2c539f69f192b42d881160446d0657c2f212800d4fa47885"
+    sha256 cellar: :any,                 big_sur:       "bf681152897e7d95030d6c6d5768c8a62acefa030400b7d0b101550d684af2d4"
+    sha256 cellar: :any,                 catalina:      "f5fa3c199ea233cc5113c8f9828019718977a84dee59aa4b80a423db407fb387"
+    sha256 cellar: :any,                 mojave:        "094976a778bcb6a57051bf8a14f234a531660c612d1727114d8e0ee0d23c17cc"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "43e63ac2cf837e60e7b9c0a62ca9650f7b99d8e2647ae658b16fd39ce4d54f3d"
   end
 
   depends_on "cmake" => :build
@@ -49,8 +51,8 @@ class Re2 < Formula
         return 0;
       }
     EOS
-    system ENV.cxx, "-std=c++11", "-I#{include}", "-L#{lib}", "-lre2",
-           "test.cpp", "-o", "test"
+    system ENV.cxx, "-std=c++11", "test.cpp", "-o", "test",
+                    "-I#{include}", "-L#{lib}", "-lre2"
     system "./test"
   end
 end

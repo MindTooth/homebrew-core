@@ -1,16 +1,17 @@
 class Meson < Formula
   desc "Fast and user friendly build system"
   homepage "https://mesonbuild.com/"
-  url "https://github.com/mesonbuild/meson/releases/download/0.58.0/meson-0.58.0.tar.gz"
-  sha256 "f4820df0bc969c99019fd4af8ca5f136ee94c63d8a5ad67e7eb73bdbc9182fdd"
+  url "https://github.com/mesonbuild/meson/releases/download/0.59.0/meson-0.59.0.tar.gz"
+  sha256 "e376c298df64b643dfe01eccb2d7b6f1e02e95aa38c19f19d120d129612ce476"
   license "Apache-2.0"
   head "https://github.com/mesonbuild/meson.git"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "c1fba0086aeee0b00dfa35e9be8153e11b1f0ba42723629d2e1f1b99f2738a44"
-    sha256 cellar: :any_skip_relocation, big_sur:       "78350d37831bed52c7a07607a74e991f968b39c7b81edb1a6365bba575990da5"
-    sha256 cellar: :any_skip_relocation, catalina:      "78350d37831bed52c7a07607a74e991f968b39c7b81edb1a6365bba575990da5"
-    sha256 cellar: :any_skip_relocation, mojave:        "78350d37831bed52c7a07607a74e991f968b39c7b81edb1a6365bba575990da5"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "7cd3369471574d895b0fa4b5f918ee0f0768082783df8b1030536e1fe435f7a0"
+    sha256 cellar: :any_skip_relocation, big_sur:       "a4a69b17bb926a1e1f2c909adb1f4ba58a536c0f742dd40c4e2fb451859fb4a3"
+    sha256 cellar: :any_skip_relocation, catalina:      "a4a69b17bb926a1e1f2c909adb1f4ba58a536c0f742dd40c4e2fb451859fb4a3"
+    sha256 cellar: :any_skip_relocation, mojave:        "a4a69b17bb926a1e1f2c909adb1f4ba58a536c0f742dd40c4e2fb451859fb4a3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7cd3369471574d895b0fa4b5f918ee0f0768082783df8b1030536e1fe435f7a0"
   end
 
   depends_on "ninja"

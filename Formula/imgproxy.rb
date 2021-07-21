@@ -1,27 +1,21 @@
 class Imgproxy < Formula
   desc "Fast and secure server for resizing and converting remote images"
   homepage "https://imgproxy.net"
-  url "https://github.com/imgproxy/imgproxy/archive/v2.16.3.tar.gz"
-  sha256 "484de4e863bbaf4aafb52c581102a24c21b046722c94f382000fbd3e6a4db3bc"
+  url "https://github.com/imgproxy/imgproxy/archive/v2.16.7.tar.gz"
+  sha256 "a86c60134fc06999c2bf038e0f12d73dd7452125764bf127b8adafc31db5426a"
   license "MIT"
   head "https://github.com/imgproxy/imgproxy.git"
 
   bottle do
-    sha256 cellar: :any, arm64_big_sur: "905e251d9cef9e10631b04227ba9a9d9658b5866fed67ba451d7aa163b4b3602"
-    sha256 cellar: :any, big_sur:       "7ff972d4f2fdf466ffbac438b2e657944b2d4c92e991fa3ca763ad2ac0d28781"
-    sha256 cellar: :any, catalina:      "56168ffff3bd3db0b194f079a0a959a2c69a3904e5e4197b583f27b7583a7625"
-    sha256 cellar: :any, mojave:        "665a46fa177f46577e991d8def300eecb3ab7eed44dc4db438b8458c1aeaec1e"
+    sha256 cellar: :any, arm64_big_sur: "ec7baaa49e8e557f3caec444dc89cd728d9b3a954b293a93f20582fdc48340fb"
+    sha256 cellar: :any, big_sur:       "267e63891e7efe226cfcacd5efc557497392d53b2a0d0f51d1bbc9f4f18adad5"
+    sha256 cellar: :any, catalina:      "3776427cf853631d1fe9167745eb872dd03804d7546701a153f86f0fe776e689"
+    sha256 cellar: :any, mojave:        "b3bf3f5ebbee3badecd323cbfb24d6b6bf363057515bfab312250c99aedd1af7"
   end
 
   depends_on "go" => :build
   depends_on "pkg-config" => :build
   depends_on "vips"
-
-  # patch build, remove in next release
-  patch do
-    url "https://github.com/imgproxy/imgproxy/commit/488d786.patch?full_index=1"
-    sha256 "4d1b3646c8b61883fe35bf9da37ce2f6e2e128643b4c22ba831d0bc9aa96c9dd"
-  end
 
   def install
     ENV["CGO_LDFLAGS_ALLOW"]="-s|-w"

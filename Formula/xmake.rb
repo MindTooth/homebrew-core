@@ -1,16 +1,17 @@
 class Xmake < Formula
   desc "Cross-platform build utility based on Lua"
   homepage "https://xmake.io/"
-  url "https://github.com/xmake-io/xmake/releases/download/v2.5.3/xmake-v2.5.3.tar.gz"
-  sha256 "337edd61de22b043720556a02bf7b1c4d4881e200ecce6bb2406d0442f2db92e"
+  url "https://github.com/xmake-io/xmake/releases/download/v2.5.5/xmake-v2.5.5.tar.gz"
+  sha256 "47537ecc53aa73783f630b85c30ae6b339cda928c509887b013c49f23b9f3528"
   license "Apache-2.0"
   head "https://github.com/xmake-io/xmake.git"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "220d389fc2514cf862d5195fe9b234357f9b74bd7691023cead693ec5b010e28"
-    sha256 cellar: :any_skip_relocation, big_sur:       "56f270578493cd53be4f1bb37ecd6b030036934b6400a9c75ca46f785f9f543d"
-    sha256 cellar: :any_skip_relocation, catalina:      "c4625a7aa1b407e59947dab90b540430c3064794a9ccc37ba0668715c6909cc2"
-    sha256 cellar: :any_skip_relocation, mojave:        "204c820e69cdde9cf5ec6168b3fc1a4f3f58bc07d5f8d709b6a213de6bd3f43b"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "92d5686c98e90835b2088117c4895bd6042874d8bb1dc453619bf7146d344462"
+    sha256 cellar: :any_skip_relocation, big_sur:       "460449a9f8a6eb606a0253668b3764dd06bf3c523dbce8580a72b3841c542cd2"
+    sha256 cellar: :any_skip_relocation, catalina:      "b46dc87d438d09c8f855997357afabbad0a5491d4ff8bd99c323bb25cdc3f666"
+    sha256 cellar: :any_skip_relocation, mojave:        "e0b91549983c6ea9fd8c6949eebadd7eba13762889e066b8bed1d9f3b88e4f67"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "31d6f41bfd53973535a912992f1274a766b35082a2fb94fe92353d9f7716d2f6"
   end
 
   on_linux do

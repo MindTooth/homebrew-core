@@ -2,16 +2,17 @@ class Chezmoi < Formula
   desc "Manage your dotfiles across multiple diverse machines, securely"
   homepage "https://chezmoi.io/"
   url "https://github.com/twpayne/chezmoi.git",
-      tag:      "v2.0.11",
-      revision: "b254970c28cb2744487621d4b730b3849e18ff03"
+      tag:      "v2.1.2",
+      revision: "a3fb755a88315bbdecedba3d849324752989400d"
   license "MIT"
   head "https://github.com/twpayne/chezmoi.git"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "97e95228e18f161da3e04dc33d9d3a2d265c0224f6b35590ef8a70a7b307a8d1"
-    sha256 cellar: :any_skip_relocation, big_sur:       "29df8b350132784006af037b26caf26ea8f97d2b3a82f83623db6a09560ba68b"
-    sha256 cellar: :any_skip_relocation, catalina:      "e3c98d0e8d838fb7a5eb081e074b869431850e04ba391a4e9a5280f0baa799ac"
-    sha256 cellar: :any_skip_relocation, mojave:        "5beab703315d0a1d4e03692e546c1634d8317f4660f70806190600f1c2114d22"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "ea12dff2829c249c6d506a0f4f4fa5115b82bab6731cec8a718e41f6aba83352"
+    sha256 cellar: :any_skip_relocation, big_sur:       "c39c3f2541dae072d5c586df92bc38acb75ee79e4b4af69625068c9ef6576cfd"
+    sha256 cellar: :any_skip_relocation, catalina:      "5fa40b3e8a68167007c3b79fceb2e044c9b8c73840a06e3f2deb26296a2a9994"
+    sha256 cellar: :any_skip_relocation, mojave:        "e70add31679b47be38833810639b477f6da8556db6fab4ba8f58eb50c58811c3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1028f72362507c2e6b5e75b01f59b6d9f0211e4ab8cd27580847e8d1bedde0bc"
   end
 
   depends_on "go" => :build
@@ -21,10 +22,10 @@ class Chezmoi < Formula
       -s -w
       -X main.version=#{version}
       -X main.commit=#{Utils.git_head}
-      -X main.date=#{Time.now.utc.rfc3339}
-      -X main.builtBy=homebrew
+      -X main.date=#{time.rfc3339}
+      -X main.builtBy=#{tap.user}
     ].join(" ")
-    system "go", "build", *std_go_args, "-ldflags", ldflags
+    system "go", "build", *std_go_args(ldflags: ldflags)
 
     bash_completion.install "completions/chezmoi-completion.bash"
     fish_completion.install "completions/chezmoi.fish"
@@ -36,7 +37,7 @@ class Chezmoi < Formula
   test do
     # test version to ensure that version number is embedded in binary
     assert_match "version v#{version}", shell_output("#{bin}/chezmoi --version")
-    assert_match "built by homebrew", shell_output("#{bin}/chezmoi --version")
+    assert_match "built by #{tap.user}", shell_output("#{bin}/chezmoi --version")
 
     system "#{bin}/chezmoi", "init"
     assert_predicate testpath/".local/share/chezmoi", :exist?
